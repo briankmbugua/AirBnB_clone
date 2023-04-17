@@ -101,3 +101,21 @@ print(type(my_new_model.created_at))
 print("--")
 print(my_model is my_new_model) # check whether the two models are the same since they are not it should return false
 ```
+
+# Store first object
+Now we can rectrate BaseModel from another one using a dictionary representation
+```python
+<class 'BaseModel'> -> to_dict() -> <class 'dict'> -> <class 'BaseModel'>
+```
+This is greate but it is still not persistent:every time you launch the program, you don't restore all the objects created before...The first way you will see here is to save these objects to a file.
+Writting the dictionary representation to a file won't be relevant:
+- python dosen't know how to convert a string to a dictionary (easily)
+- it is not human readable
+- Using the file with another program in python or other language will be hard.
+so you will convert the dictionary representation to a JSON String.In this format human can read and all programming languages have a JSON reader and writer.
+Now the flow of serialization-deserialization will be
+```python
+<class 'BaseModel'> -> to_dict() -> <class 'dict'> -> JSON dump -> <class 'str'> -> FILE -> <class 'str'> -> JSON load -> <class 'dict'> -> <class 'BaseModel'>
+```
+- simple python data structure:Dictionaries, arrays, number and string ```python{'12':{'numbers' [1,2,3], 'name': "john"}}```
+- JSON string representation: String representing a simple data structure in JSON format ```json python{"12":{"numbers": [1,2,3], "name": "john"}}''```
