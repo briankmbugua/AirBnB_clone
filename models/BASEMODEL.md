@@ -119,3 +119,49 @@ Now the flow of serialization-deserialization will be
 ```
 - simple python data structure:Dictionaries, arrays, number and string ```python{'12':{'numbers' [1,2,3], 'name': "john"}}```
 - JSON string representation: String representing a simple data structure in JSON format ```json python{"12":{"numbers": [1,2,3], "name": "john"}}''```
+## FileStorage class
+```python
+class FileStorage:
+    """serializes instances to a JSON file and deserializes JSON file to instances"""
+    __file_path = 'file.json' # path to the json file
+    __objects = {} # an empty __objects dictionary
+
+    def all(self):
+        """Returs the dictionary __objects"""
+        return FileStorage.__objects # returns the dictionary object
+
+    def new(self, obj):
+        """sets in __objects the obj with <obj class name>.id"""
+        """The new() method takes an object, converts it to a dictionary representation using its to_dict() method, constructs a unique key using the object's class name and id, and then adds the resulting key-value pair to the __objects dictionary using the update() method. So the __objects dictionary stores all the objects in the FileStorage instance, and each object is associated with a unique key that identifies its class name and id."""
+        self.all().update({obj.to_dict()['__class__'] + '.' + obj.id:obj})
+        """This method takes an obj as an argument and adds it to the __objects dictionary by setting the key value pair tp obj_class_name.id: obj
+        self.all().update(...) -> this retrieves the entire dictioanary ob objects by calling 'all() method and then updates it with new object
+        {obj.to_dict()['__class__'] + '.' + obj.id: obj} -> this creates a new dictionary with a single key-value pair.The key is a string concantation of the objects's class name obtained from its to_dict() method and its unique id.The value is the object itself.By default obj.to_dict() returns a dictionary representation of the object, which includes __class__ attribute as one of its keys.Therefore we use the [__class__] key to access the objects class name
+        In summary the new method takes an object, converts it to dictionary representation using its to_dict() method, constructs a unique key using the class name and id and the adds the resulting key valie pair to the __objects dictionary using the update() method.
+        """
+    def save(self):
+        """serializes __objects to the JSON file"""
+        with open(FileStorage.__file_path, 'w') as f:#open the __file_path file for writting using the 'with' statement
+            temp = {} # creates a temporary dictionary and copies the content of the __objects dictionary to 'temp' using the update() method this is dome to avoid modifying the original __objects dictionary
+            temp.update(FileStorage.__objects)
+            for key, val in temp.items():
+                temp[key] = val.to_dict()
+                 # iterates through the temp dictionary using a for loop and converts each value which is an object to a dictionary representation using to_dict() method defined in the basemodel class,The resulting dictionary is stored back in temp with the same key.
+            json.dump(temp, f) # finally uses the json.dump method to write the contents of the temp dictionary to the file handle f
+            #save writes the serialized objects to a JSON file
+    def reload(self):
+        """deserializes the JSON file to __objects(only if the JSON file to __objects exist)"""
+        from models.base_model import BaseModel # imports the basemodel class this is necessar beceuse the deserialized objects are constructed as instances of the appropriate subclass of 'BaseModel'
+        classes = {
+                     'BaseModel': BaseModel
+                  } #the methods then creates a dictionary classes that maps the corresponding class objects.Currently there is only one mapping from the string 'BaseModel' to the 'BaseModel' class.
+        try:
+            temp = {}
+            with open(FileStorage.__file_path, 'r') as f:
+                temp = json.load(f)
+                for key, val in temp.items():
+                    self.all()[key] = classes[val['__class__']](**val)
+                    #Open the json file in the __file_path for reading using the with statement, if file is not found the exception is caught and ignored if the file is found
+        except FileNotFoundError:
+            pass
+```
