@@ -1,3 +1,15 @@
+# DICTIONARY
+Values in python dictionary can be accessed by placing the key within square brackets next to the dictionary
+Values can be written by placing key within square brackets next to the dictionary and using assingement operator, if the key already exists the old value will be overwritten
+```python
+my_dictionary = {"song":"Estranged","artist":"Guns N' Roses"}
+my_dictionary["song"] #accesing the value Estranged using the key "song"
+my_dictionary["song"] = "paradise city" #overwritting the key "song" with a new value "paradise city"
+#merging dictionaries with update
+#dict1.update(dict2) the key value pairs of dict2 will be written into dict1 dictionary
+#for keys in both dict1 and dict2 the value in dict1 will be overwritten by the corresponding value in dict2
+#python allows the values in a dictionary to be any type string, interger, a list, another dictionary, boolean, etc.Keys must always be immutable data type such as strings, numbers or tuples
+```
 # BaseModel
 Write a class BaseModel that defines all common attributes/methods for other classes
 ## public instance atrributes
