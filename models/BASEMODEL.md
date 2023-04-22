@@ -10,6 +10,14 @@ my_dictionary["song"] = "paradise city" #overwritting the key "song" with a new 
 #for keys in both dict1 and dict2 the value in dict1 will be overwritten by the corresponding value in dict2
 #python allows the values in a dictionary to be any type string, interger, a list, another dictionary, boolean, etc.Keys must always be immutable data type such as strings, numbers or tuples
 ```
+## Dictionary Key-Value methods
+- .keys() returns the keys through a dict_keys object
+- .values() returns the values through a dict_values object
+- .items() returns both the keys and values through a dict_items object
+```python
+ex_dict = {"a": "anteater", "b":"bumblebee", "c":"cheetah"}
+ex_dict.keys() 
+```
 # BaseModel
 Write a class BaseModel that defines all common attributes/methods for other classes
 ## public instance atrributes
