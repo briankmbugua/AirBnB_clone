@@ -1,6 +1,11 @@
+html {
+    height: 100%;
+    margin: 0;
+}
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
     color: #484848;
     font-size: 14px;
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -21,6 +26,4 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    bottom: 0;
 }
