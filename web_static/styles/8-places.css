@@ -1,0 +1,35 @@
+.places {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+}
+.places article {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+}
+.places article .headline {
+    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.places article .headline h2{
+    background: green;
+    border: 2px solid red;
+    margin-left: 350px;
+}
+.places article .headline .price_by_night {
+    background: rgb(232, 238, 232);
+    margin-left: auto;
+    border-radius: 50%;
+}
+.places article .information {
+    background: rgb(126, 128, 0);
+}
+.places article .user {
+    background: fuchsia;
+}
+.places article .description {
+    background: rgb(13, 0, 128);
+}
