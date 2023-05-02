@@ -1,35 +1,76 @@
 .places {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border: 2px solid green;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
-.places article {
+.places section{
+    margin-right: auto;
+    margin-bottom: auto;
+    border: 2px solid black;
+    width: auto;
+}
+.places .inner{
+    border: 3px dotted red;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.places .inner article {
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
+    border: 2px solid rgb(82, 57, 57);
+    height: 300px;
+    justify-content: stretch;
+    width: auto;
 }
-.places article .headline {
+.places .inner article .headline {
     background: green;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100px;
 }
-.places article .headline h2{
+.places .inner article .headline h2{
     background: green;
     border: 2px solid red;
     margin-left: 350px;
 }
-.places article .headline .price_by_night {
-    background: rgb(232, 238, 232);
+.places .inner article .headline .price_by_night {
     margin-left: auto;
+    border: 4px solid #FF5A5F;
     border-radius: 50%;
+    color: #FF5A5F;
+    min-width: 60px;
+    height: 60px;
+    font-size: 30px;
 }
-.places article .information {
+.places .inner article .information {
     background: rgb(126, 128, 0);
+    height: 80px;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
-.places article .user {
+.places .inner article .information .max_guest {
+    width: 100px;
+}
+.places .inner article .information .number_rooms {
+    width: 100px;
+}
+.places .inner article .information .max_guest .number_bathrooms{
+    width: 100px;
+}
+.places .inner article .user {
     background: fuchsia;
 }
-.places article .description {
+.places .inner article .description {
     background: rgb(13, 0, 128);
+    height:100px;
 }
